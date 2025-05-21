@@ -14,6 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_workout'])) {
     $date = $_POST['date'];
     $text = $_POST['text'];
 
+    $valgdato = Date('Y-m-d', strtotime($date));
+    $now = Date('Y-m-d');
+
+    if ($now > $valgdato) {
+        echo "Du kan ikke legge til en workout i fremtiden.";
+        exit();
+    }
+
     $stmt = $conn->prepare("INSERT INTO workouts (user_id, workout_date, workout_text) VALUES (?, ?, ?)");
     $stmt->bind_param("iss", $user_id, $date, $text);
     $stmt->execute();
