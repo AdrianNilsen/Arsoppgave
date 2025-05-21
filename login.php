@@ -15,7 +15,7 @@
     <button type="submit">Log In</button>
 </form>
 
-<a href="register.php"></a>
+<a href="register.php">register</a>
 
 
 
@@ -27,8 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT id FROM users WHERE username = ? AND password = ?");
-    $stmt->bind_param("ss", $username, $password);
+    $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+    $stmt->bind_param("ss", $username);
     $stmt->execute();
 
     // Få resultatet som en array
@@ -42,6 +42,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         echo "Invalid username or password.";
     }
+
+    if (password_verify($password, $hashed_password)) {
+    // Passord er korrekt
+    $_SESSION['user_id'] = $user['id'];
+    header("Location: index.php");
+    exit();
+} else {
+    echo "Invalid username or password.";
+}
+
 
     $stmt->close();
 }
