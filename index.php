@@ -29,6 +29,7 @@ if ($valgtdato < $nowdato) {
     header("Location: index.php");
     exit();
 }
+}
 
 // Hent workouts
 $stmt = $conn->prepare("SELECT workout_date, workout_text FROM workouts WHERE user_id = ? ORDER BY workout_date DESC");
