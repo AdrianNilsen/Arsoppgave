@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     $checkStmt->close();
 
      $password = password_hash($password, PASSWORD_DEFAULT);
-
+    // $password = password_hash($password, PASSWORD_DEFAULT);
 
     // Step 2: Prepare the SQL query
     $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");

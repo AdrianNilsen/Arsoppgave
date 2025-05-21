@@ -27,22 +27,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT id FROM users WHERE username = ? AND password = ?");
-    $stmt->bind_param("ss", $username, $password);
+    $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
     $stmt->execute();
 
     // Få resultatet som en array
     $result = $stmt->get_result();
 
     if ($result && $result->num_rows === 1) {
-        $user = $result->fetch_assoc(); // fetch_assoc returns an associative array
-        $_SESSION['user_id'] = $user['id']; // Now this line is safe
-        header("Location: index.php");
-        exit();
+        $user = $result->fetch_assoc(); 
+
+
+        if (password_verify($password, $user['password'])) {
+            $_SESSION['user_id'] = $user['id'];
+            header("Location: index.php");
+            exit();
+        } else {
+            echo "Invalid username or password.";
+        }
     } else {
         echo "Invalid username or password.";
     }
-
     $stmt->close();
 }
 ?>
