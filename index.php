@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_workout'])) {
     $text = $_POST['text'];
 
     $valgdato = Date('Y-m-d', strtotime($date));
-    $now = Date('Y-m-d');
+    $now = Date('Y-m-d', strtotime('-1 month'));
 
     if ($now > $valgdato) {
         echo "Du kan ikke legge til en workout i fremtiden.";
