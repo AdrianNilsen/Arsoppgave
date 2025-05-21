@@ -84,3 +84,23 @@ Koble Raspberry Pi til en skjerm, og følg oppsettinstruksjonene som vises.
 
 Nå er programvaren på Raspberry Pi klar til bruk.
 
+
+
+## FAQ - Vanlige spørsmål
+
+**1. Hvordan kan jeg registrere en ny bruker?**  
+Du kan registrere deg ved å klikke på "Registrer" knappen på innloggingssiden, fylle inn nødvendig informasjon som e-post og passord, og deretter bekrefte registreringen via e-post.
+
+**2. Kan jeg bruke gym tracker uten å være logget inn?**  
+Nei, du må være logget inn for å registrere treningsøkter og se treningshistorikken din.
+
+**3. Hvordan legger jeg til en ny treningsøkt?**  
+Fyll ut dato og gi navn på treningsøkten og klikk på knappen. 
+
+e-post og passord under "Innstillinger" når du er logget inn.
+
+**4. Støtter gym trackeren flere brukere?**  
+Ja, hver bruker har sin egen konto og treningshistorikk som kun er tilgjengelig for dem.
+
+
+
