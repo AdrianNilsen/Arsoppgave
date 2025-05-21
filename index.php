@@ -45,10 +45,7 @@ $result = $stmt->get_result(); // Viktig at denne er her!
 
 <form method="POST" action="index.php">
     <label>Date:</label><br>
-    <input type="date" name="date" required><br><br>
-
-    <p>wdasdwa</p>
-
+    <input type="date" name="date" required value="<?php echo date('Y-m-d'); ?>">
     <label>Workout:</label><br>
     <input type="text" name="text" required><br><br>
 
