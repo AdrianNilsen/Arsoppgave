@@ -14,26 +14,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_workout'])) {
     $date = $_POST['date'];
     $text = $_POST['text'];
 
-    $valgtdato = date('Y-m-d', strtotime($date));
-    $nowdato = date('Y-m-d');
+$valgtdato = date('Y-m-d', strtotime($date));
+$nowdato = date('Y-m-d');
 
 if ($valgtdato < $nowdato) {
     echo "<p style='color: red;'>Dato kan ikke være i fortiden</p>";
     exit();
 } else {
-    // Legg til workout i DB som før
     $stmt = $conn->prepare("INSERT INTO workouts (user_id, workout_date, workout_text) VALUES (?, ?, ?)");
     $stmt->bind_param("iss", $user_id, $date, $text);
-    if ($stmt->execute()) {
-        header("Location: index.php");
-        exit();
-    } else {
-        $error_msg = "Noe gikk galt, prøv igjen.";
-    }
+    $stmt->execute();
     $stmt->close();
-}
-}
 
+    header("Location: index.php");
+    exit();
+}
 
 // Hent workouts
 $stmt = $conn->prepare("SELECT workout_date, workout_text FROM workouts WHERE user_id = ? ORDER BY workout_date DESC");
