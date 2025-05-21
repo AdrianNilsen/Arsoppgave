@@ -18,6 +18,7 @@
     <button type="submit" name="register">Register</button>
 </form>
 
+<a href="login.php">login</a>
 
 
 
