@@ -35,16 +35,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $result = $stmt->get_result();
 
     if ($result && $result->num_rows === 1) {
-        $user = $result->fetch_assoc(); 
-            if ($user && password_verify($password, $user['password'])) {
-        // Passordet stemmer
-        $_SESSION['user_id'] = $user['id'];
+        $user = $result->fetch_assoc(); // fetch_assoc returns an associative array
+        $_SESSION['user_id'] = $user['id']; // Now this line is safe
         header("Location: index.php");
         exit();
     } else {
-        // Feil brukernavn eller passord
-        echo "Ugyldig brukernavn eller passord.";
+        echo "Invalid username or password.";
     }
+
+    $stmt->close();
 }
 ?>
 
