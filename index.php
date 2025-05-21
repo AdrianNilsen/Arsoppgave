@@ -25,6 +25,7 @@ else {
     $stmt->bind_param("iss", $user_id, $date, $text);
     $stmt->execute();
     $stmt->close();
+    }
 }
 
 // Hent workouts
