@@ -1,109 +1,86 @@
-# 🐧 Sette opp Ubuntu i en virtuell maskin (VirtualBox)
+# Oppsett av Raspberry Pi med Ubuntu Server
 
-Dette dokumentet forklarer hvordan du installerer og setter opp Ubuntu i en virtuell maskin ved hjelp av **VirtualBox**.
+## Forberedelser
+Denne veiledningen forklarer hvordan du installerer programvare på en Raspberry Pi. Den dekker ikke den fysiske monteringen av enheten.
 
----
+Hovedsakelig brukes Google Chrome som nettleser i denne prosessen.
 
-## 📦 Forutsetninger
+Eksempelvis benyttes Raspberry Pi 4B.
 
-Før du begynner trenger du følgende:
+Det forutsettes at du kan søke på nettet og laste ned filer.
 
-- En datamaskin med Windows, macOS eller Linux
-- Internett-tilkobling
-- [VirtualBox](https://www.virtualbox.org/) installert
-- Ubuntu ISO-fil (last ned fra [ubuntu.com](https://ubuntu.com/download))
-
----
-
-## 📥 Steg 1: Last ned Ubuntu
-
-1. Gå til: https://ubuntu.com/download
-2. Velg ønsket versjon (f.eks. Ubuntu Desktop 24.04 LTS)
-3. Klikk "Download" og lagre `.iso`-filen
+Dette GitHub-repositoriet inneholder:
+- Denne README-filen
+- En mappe med referansebilder
+- En telefonkatalog
 
 ---
 
-## 🛠️ Steg 2: Installer og start VirtualBox
+## Slik setter du opp Raspberry Pi
 
-1. Last ned og installer VirtualBox fra https://www.virtualbox.org/
-2. Start VirtualBox etter installasjon
+1. Åpne en nettleser og søk etter **"Raspberry Pi Imager"** eller gå direkte via denne [lenken](https://www.raspberrypi.com/software/).
 
----
+2. Bla ned til seksjonen **Install Raspberry Pi OS using Raspberry Pi Imager** og klikk på den.
 
-## 🖥️ Steg 3: Opprett en ny virtuell maskin
+3. Du vil nå se et skjermbilde med installasjonsveiledningen for Raspberry Pi OS.
 
-1. Klikk **"New"** / "Ny"
-2. Navngi maskinen, f.eks. `Ubuntu`
-3. Velg:
-   - **Type:** Linux
-   - **Versjon:** Ubuntu (64-bit)
-4. Klikk **Next**
+4. Klikk på **Install** for å starte installasjonen.
 
----
+5. Når installasjonen er ferdig, huk av for **Run Raspberry Pi Imager** og trykk **Finish**.
 
-## 💾 Steg 4: Angi minne (RAM)
+6. Velg din Raspberry Pi-enhet (f.eks. Raspberry Pi 4), operativsystem (f.eks. Ubuntu Desktop) og lagringsenhet (f.eks. SD-kort).
 
-1. Velg minst **2048 MB (2 GB)** RAM
-2. Anbefalt: 4096 MB for bedre ytelse
-3. Klikk **Next**
+7. Klikk på **Next**, og bekreft med **Yes** dersom du får opp en dialog.
+
+8. Når operativsystemet er skrevet til SD-kortet, fjern kortet fra PC-en og sett det inn i Raspberry Pi.
+
+9. Koble Raspberry Pi til skjerm og følg oppsettveiledningen på skjermen.
+
+Nå er programvaren klar på Raspberry Pi-en din.
 
 ---
 
-## 💽 Steg 5: Opprett virtuell harddisk
+## Installere og konfigurere Ubuntu Server
 
-1. Velg **"Create a virtual hard disk now"**
-2. Klikk **Create**
-3. Velg **VDI (VirtualBox Disk Image)** og klikk **Next**
-4. Velg **Dynamically allocated** og klikk **Next**
-5. Velg diskstørrelse (minst 25 GB anbefales), og klikk **Create**
+1. Etter oppstart av Ubuntu på Raspberry Pi, åpne terminalen.
 
----
+2. Oppdater systemet med følgende kommandoer:
 
-## 🔗 Steg 6: Koble til Ubuntu ISO
+   ```bash
+   sudo apt update        # Sjekker etter tilgjengelige oppdateringer
+   sudo apt upgrade       # Installerer oppdateringer
 
-1. Velg den nye VM-en i listen, og klikk **Settings**
-2. Gå til **Storage**
-3. Klikk på **"Empty"** under "Controller: IDE"
-4. Klikk på CD-ikonet til høyre > **Choose a disk file**
-5. Velg ISO-filen du lastet ned
-6. Klikk **OK**
 
----
 
-## ▶️ Steg 7: Start installasjonen
+## 3. Se installasjonsveiledningen for Raspberry Pi OS
 
-1. Klikk **Start**
-2. Følg Ubuntu-installasjonsveiviseren:
-   - Velg språk
-   - Klikk "Install Ubuntu"
-   - Velg tastaturoppsett
-   - Velg installasjonstype
-   - Opprett brukerkonto
-   - Fullfør installasjonen
+Etter å ha startet Raspberry Pi Imager, vil du se en veiledning for hvordan du installerer Raspberry Pi OS.
 
----
+## 4. Start installasjonen
 
-## ⏳ Steg 8: Fullfør og restart
+Klikk på **Install** for å begynne installasjonsprosessen.
 
-1. Når installasjonen er ferdig, velg **Restart Now**
-2. Før restart: Gå til **Devices > Optical Drives > Remove disk from virtual drive**
-3. Trykk Enter etter "Please remove the installation medium" hvis nødvendig
+## 5. Fullfør installasjonen
 
----
+Når installasjonen er ferdig, huk av for **Run Raspberry Pi Imager** og trykk på **Finish**.
 
-## ✅ Klar til bruk!
+## 6. Velg enhet, OS og lagring
 
-Ubuntu er nå installert og klart til bruk i din virtuelle maskin! 🎉
+Velg din Raspberry Pi-modell (for eksempel Raspberry Pi 4), ønsket operativsystem (for eksempel Ubuntu Desktop), og lagringsenheten (for eksempel SD-kort).
 
----
+## 7. Bekreft valgene
 
-## 🧠 Tips
+Trykk på **Next**, og svar **Yes** dersom du får opp en bekreftelsesdialog.
 
-- Installer **Guest Additions** for:
-  - Bedre skjermoppløsning
-  - Klipp og lim mellom vert og gjest
-  - Delte mapper
-- Kjør følgende kommandoer i terminalen for å holde systemet oppdatert:
+## 8. Sett inn SD-kortet i Raspberry Pi
 
-```bash
-sudo apt update && sudo apt upgrade
+Når operativsystemet er skrevet til SD-kortet, ta det ut av PC-en og sett det inn i Raspberry Pi.
+
+## 9. Koble til skjerm og følg oppsett
+
+Koble Raspberry Pi til en skjerm, og følg oppsettinstruksjonene som vises.
+
+## 10. Fullfør programvareoppsettet
+
+Nå er programvaren på Raspberry Pi klar til bruk.
+
