@@ -47,6 +47,8 @@ $result = $stmt->get_result(); // Viktig at denne er her!
     <label>Date:</label><br>
     <input type="date" name="date" required><br><br>
 
+    <p>wdasdwa</p>
+
     <label>Workout:</label><br>
     <input type="text" name="text" required><br><br>
 
