@@ -11,4 +11,3 @@ if ($conn->connect_error) {
 }
 ?>
 
-http://192.168.86.24/
