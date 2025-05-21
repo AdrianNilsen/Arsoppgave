@@ -27,8 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT id FROM users WHERE username = ? AND password = ?");
-    $stmt->bind_param("ss", $username, $password);
+    $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+    $stmt->bind_param("ss", $username);
     $stmt->execute();
 
     // Få resultatet som en array
@@ -43,8 +43,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo "Invalid username or password.";
     }
 
+       if (password_verify($password, $user['password'])) {
+            $_SESSION['user_id'] = $user['id'];
+            header("Location: index.php");
+            exit();
+        } else {
+            echo "Invalid username or password.";
+        }
+    } else {
+        echo "Invalid username or password.";
+    }
+
     $stmt->close();
-}
+
 ?>
 
 
