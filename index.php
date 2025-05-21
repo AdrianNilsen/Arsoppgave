@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_workout'])) {
 
 if ($valgtdato < $nowdato) {
     echo "<p style='color: red;'>Dato kan ikke være i fortiden</p>";
+    exit();
 }
 
 
