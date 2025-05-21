@@ -33,7 +33,7 @@ $result = $stmt->get_result(); // Viktig at denne er her!
 <head><title>Workout Tracker</title></head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 <body>
-<h2>Workout ding dong</h2>
+<h2>Workout Tracker</h2>
 
 <form method="POST" action="index.php">
     <label>Date:</label><br>
