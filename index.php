@@ -27,6 +27,9 @@ if ($valgtdato < $nowdato) {
     $stmt->bind_param("iss", $user_id, $date, $text);
     $stmt->execute();
     $stmt->close();
+
+    header("Location: index.php");
+    exit();
 }
 
 // Hent workouts
