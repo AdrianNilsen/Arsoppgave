@@ -15,6 +15,8 @@
     <button type="submit">Log In</button>
 </form>
 
+<a href="register.php">register</a>
+
 
 
 <?php
