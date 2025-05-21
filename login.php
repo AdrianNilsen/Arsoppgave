@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+    $stmt = $conn->prepare("SELECT id, password FROM users WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
 
@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         echo "Invalid username or password.";
     }
+
 
     
 
