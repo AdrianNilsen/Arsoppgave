@@ -14,14 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_workout'])) {
     $date = $_POST['date'];
     $text = $_POST['text'];
 
-    $valgdato = Date('Y-m-d', strtotime($date));
-    $now = Date('Y-m-d', strtotime());
+ $valgdato = date('Y-m-d', strtotime($date));
+ $now = date('Y-m-d');
 
-    if ($now > $valgdato) {
-        echo "Legg til en valid dato.";
-        exit();
-    }
-
+ if ($now > $valgdato) {
+     echo "Legg til en valid dato.";
+     exit();
     // $valgdato = Date('Y-m-d', strtotime($date));
     // $now = Date('Y-m-d', strtotime('-1 month'));
 
