@@ -13,6 +13,7 @@ $user_id = $_SESSION['user_id'];
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_workout'])) {
     $date = $_POST['date'];
     $text = $_POST['text'];
+    $sets = intval($_POST['sets']); // Get number of sets
 
     $valgdato = date('Y-m-d', strtotime($date));
     $now = date('Y-m-d');
@@ -22,8 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_workout'])) {
         exit();
     }
 
-    $stmt = $conn->prepare("INSERT INTO workouts (user_id, workout_date, workout_text) VALUES (?, ?, ?)");
-    $stmt->bind_param("iss", $user_id, $date, $text);
+    $stmt = $conn->prepare("INSERT INTO workouts (user_id, workout_date, workout_text, sets) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("issi", $user_id, $date, $text, $sets);
 
     if (!$stmt->execute()) {
         die("Database error: " . $stmt->error);
@@ -33,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_workout'])) {
 }
 
 // Fetch workouts
-$stmt = $conn->prepare("SELECT workout_date, workout_text FROM workouts WHERE user_id = ? ORDER BY workout_date DESC");
+$stmt = $conn->prepare("SELECT workout_date, workout_text, sets FROM workouts WHERE user_id = ? ORDER BY workout_date DESC");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 
@@ -50,10 +51,13 @@ $result = $stmt->get_result(); // Important!
 
 <form method="POST" action="index.php">
     <label>Date:</label><br>
-    <input type="date" name="date" required value=<?php echo date('Y-m-d')?>>
-    
+    <input type="date" name="date" required value="<?php echo date('Y-m-d') ?>"><br>
+
     <label>Workout:</label><br>
-    <input type="text" name="text" required><br><br>
+    <input type="text" name="text" required><br>
+
+    <label>Sets:</label><br>
+    <input type="number" name="sets" min="1" required><br><br>
 
     <button type="submit" name="add_workout">Add Workout</button>
 </form>
@@ -62,7 +66,9 @@ $result = $stmt->get_result(); // Important!
 <ul>
 <?php
 while ($row = $result->fetch_assoc()) {
-    echo "<li><strong>" . htmlspecialchars($row['workout_date']) . ":</strong> " . htmlspecialchars($row['workout_text']) . "</li>";
+    echo "<li><strong>" . htmlspecialchars($row['workout_date']) . ":</strong> " . 
+         htmlspecialchars($row['workout_text']) . " - Sets: " . 
+         htmlspecialchars($row['sets']) . "</li>";
 }
 $stmt->close();
 ?>
@@ -72,4 +78,3 @@ $stmt->close();
 
 </body>
 </html>
-
