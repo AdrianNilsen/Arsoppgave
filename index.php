@@ -15,12 +15,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_workout'])) {
     $text = $_POST['text'];
 
     $valgdato = Date('Y-m-d', strtotime($date));
-    $now = Date('Y-m-d', strtotime('-1 month'));
+    $now = Date('Y-m-d', strtotime());
 
     if ($now > $valgdato) {
         echo "Legg til en valid dato.";
         exit();
     }
+
+    // $valgdato = Date('Y-m-d', strtotime($date));
+    // $now = Date('Y-m-d', strtotime('-1 month'));
+
+    // if ($now > $valgdato) {
+    //     echo "Legg til en valid dato.";
+    //     exit();
+    // }
 
     $stmt = $conn->prepare("INSERT INTO workouts (user_id, workout_date, workout_text) VALUES (?, ?, ?)");
     $stmt->bind_param("iss", $user_id, $date, $text);
@@ -45,7 +53,7 @@ $result = $stmt->get_result(); // Viktig at denne er her!
 
 <form method="POST" action="index.php">
     <label>Date:</label><br>
-     <input type="date" name="date" required> <!-- required value="<?php echo date('Y-m-d'); ?>> -->
+     <input type="date" name="date" required <?php?>> <!-- required value="<?php echo date('Y-m-d'); ?>> -->
     <label>Workout:</label><br>
     <input type="text" name="text" required><br><br>
 
