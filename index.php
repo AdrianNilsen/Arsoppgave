@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_workout'])) {
 
  if ($now > $valgdato) {
      echo "Legg til en valid dato.";
-     exit();
+     exit(); }
     // $valgdato = Date('Y-m-d', strtotime($date));
     // $now = Date('Y-m-d', strtotime('-1 month'));
 
