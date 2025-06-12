@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_workout'])) {
     $valgdato = date('Y-m-d', strtotime($date));
     $now = date('Y-m-d');
 
-    if ($valgdato > $now) {
+    if ($now > $valgdato) {
         echo "Du kan ikke legge til en workout i fremtiden!";
         exit();
     }
@@ -50,7 +50,7 @@ $result = $stmt->get_result(); // Important!
 
 <form method="POST" action="index.php">
     <label>Date:</label><br>
-    <input type="date" name="date" required>
+    <input type="date" name="date" required value=<?php echo date('Y-m-d')?>>
     
     <label>Workout:</label><br>
     <input type="text" name="text" required><br><br>
@@ -73,33 +73,3 @@ $stmt->close();
 </body>
 </html>
 
-<!DOCTYPE html>
-<html>
-<head><title>Workout Tracker</title></head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-<body>
-<h2>Workout Tracker</h2>
-
-<form method="POST" action="index.php">
-    <label>Date:</label><br>
-     <input type="date" name="date" required =<?php?>> 
-    <label>Workout:</label><br>
-    <input type="text" name="text" required><br><br>
-
-    <button type="submit" name="add_workout">Add Workout</button>
-</form>
-
-<h3>Your Workouts:</h3>
-<ul>
-<?php
-while ($row = $result->fetch_assoc()) {
-    echo "<li><strong>" . $row['workout_date'] . ":</strong> " . htmlspecialchars($row['workout_text']) . "</li>";
-}
-$stmt->close();
-?>
-</ul>
-
-<a href="logout.php">Logout</a>
-
-</body>
-</html>
